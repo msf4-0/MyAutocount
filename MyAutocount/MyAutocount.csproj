@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C9B562F-7E6B-4989-8AB8-10CA5BFCA2CB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyAutocount</RootNamespace>
+    <AssemblyName>MyAutocount</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.2.0.0\lib\net452\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Hosting.Self.2.0.0\lib\net452\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Topshelf, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Topshelf.4.3.0\lib\net452\Topshelf.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auth.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DatabaseInfo.cs" />
+    <Compile Include="Doctypes\Purchase\Creditor.cs" />
+    <Compile Include="Doctypes\Purchase\PurchaseOrder.cs" />
+    <Compile Include="Doctypes\Sales\CancelSO.cs" />
+    <Compile Include="Doctypes\Sales\CashSale.cs" />
+    <Compile Include="Doctypes\Sales\CreditNote.cs" />
+    <Compile Include="Doctypes\Sales\DebitNote.cs" />
+    <Compile Include="Doctypes\Sales\Debtor.cs" />
+    <Compile Include="Doctypes\Sales\DeliveryOrder.cs" />
+    <Compile Include="Doctypes\Sales\DeliveryReturn.cs" />
+    <Compile Include="Doctypes\Sales\Quotation.cs" />
+    <Compile Include="Doctypes\Sales\SalesInvoice.cs" />
+    <Compile Include="Doctypes\Sales\SalesOrder.cs" />
+    <Compile Include="Doctypes\StockAdjustment.cs" />
+    <Compile Include="Doctypes\StockGroup.cs" />
+    <Compile Include="Doctypes\StockIssue.cs" />
+    <Compile Include="Doctypes\StockItem.cs" />
+    <Compile Include="Doctypes\StockReceive.cs" />
+    <Compile Include="Doctypes\StockTake.cs" />
+    <Compile Include="Doctypes\StockUpdateCost.cs" />
+    <Compile Include="Doctypes\StockWriteOff.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="MyService.cs" />
+    <Compile Include="MySettings.cs" />
+    <Compile Include="Sql.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AutoCount">
+      <HintPath>_dll\AutoCount.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Accounting">
+      <HintPath>_dll\AutoCount.Accounting.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Accounting.UI">
+      <HintPath>_dll\AutoCount.Accounting.UI.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.ARAP">
+      <HintPath>_dll\AutoCount.ARAP.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.BusinessFlow">
+      <HintPath>_dll\AutoCount.BusinessFlow.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.GeneralMaint">
+      <HintPath>_dll\AutoCount.GeneralMaint.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.GL">
+      <HintPath>_dll\AutoCount.GL.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.GL.FinancialReport">
+      <HintPath>_dll\AutoCount.GL.FinancialReport.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.GST">
+      <HintPath>_dll\AutoCount.GST.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.ImportExport">
+      <HintPath>_dll\AutoCount.ImportExport.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Inquiry">
+      <HintPath>_dll\AutoCount.Inquiry.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Invoicing">
+      <HintPath>_dll\AutoCount.Invoicing.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Invoicing.Purchase">
+      <HintPath>_dll\AutoCount.Invoicing.Purchase.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Invoicing.Sales">
+      <HintPath>_dll\AutoCount.Invoicing.Sales.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.MainEntry">
+      <HintPath>_dll\AutoCount.MainEntry.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.MainEntry.XmlSerializers">
+      <HintPath>_dll\AutoCount.MainEntry.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.ManageAccountBook">
+      <HintPath>_dll\AutoCount.ManageAccountBook.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.ManagementStudio">
+      <HintPath>_dll\AutoCount.ManagementStudio.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Manufacturing">
+      <HintPath>_dll\AutoCount.Manufacturing.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.StartScreen">
+      <HintPath>_dll\AutoCount.StartScreen.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Stock">
+      <HintPath>_dll\AutoCount.Stock.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.StockMaint">
+      <HintPath>_dll\AutoCount.StockMaint.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Tools">
+      <HintPath>_dll\AutoCount.Tools.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Tools.DataUpgrade">
+      <HintPath>_dll\AutoCount.Tools.DataUpgrade.DLL</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.Tools.XmlSerializers">
+      <HintPath>_dll\AutoCount.Tools.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoCount.UI">
+      <HintPath>_dll\AutoCount.UI.DLL</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v19.2">
+      <HintPath>_dll\DevExpress.BonusSkins.v19.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v19.2">
+      <HintPath>_dll\DevExpress.Data.v19.2.DLL</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v19.2">
+      <HintPath>_dll\DevExpress.Utils.v19.2.DLL</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v19.2">
+      <HintPath>_dll\DevExpress.XtraBars.v19.2.DLL</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v19.2">
+      <HintPath>_dll\DevExpress.XtraEditors.v19.2.DLL</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v19.2">
+      <HintPath>_dll\DevExpress.XtraGrid.v19.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>_dll\Microsoft.AspNet.SignalR.Client.DLL</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_dll\Newtonsoft.Json.DLL</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
